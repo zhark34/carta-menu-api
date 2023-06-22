@@ -11,6 +11,7 @@ router.use(cors());
 
 // Definición de ruta para la página principal de categorias
 router.get('/api/categorias', (req, res)=>{
+  res.header('Access-Control-Allow-Origin', '*');
   categorias.find().then((data) => {
     res.send(data);
   }).catch((err) => {
@@ -20,6 +21,7 @@ router.get('/api/categorias', (req, res)=>{
 
 // Ruta para mostrar los platos que hay en una categoria
 router.get('/api/categoria/:id', (req, res)=>{
+  res.header('Access-Control-Allow-Origin', '*');
   menu.find({categoria:req.params.id}).then((data) => {
     res.send(data);
   }).catch((err) => {
