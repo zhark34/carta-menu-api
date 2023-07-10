@@ -24,8 +24,8 @@ app.post('/loguear', auth, (req, res)=>{
   admins.find({ usuario: req.body.user, password: req.body.pass })
   .exec()
   .then(user => {    
-    if (req.body.user && req.body.password) {
-        var query = {$and: [{user: req.body.user}, {password: req.body.password}]};        
+    if (req.body.user && req.body.pass) {
+        var query = {$and: [{user: req.body.user}, {password: req.body.pass}]};        
         esquema.find(query, (err, data) =>{
             if (err) return res.status(200).send({"login":0,"error":"Error Interno"});            
             if(data.length>0){       
