@@ -20,10 +20,14 @@ app.use(session({
 }));
 
 app.post('/loguear', auth, (req, res)=>{
+  
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header("Access-Control-Allow-Headers","Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
+
   admins.find({ usuario: req.body.user, password: req.body.pass })
   .exec()
-  .then(user => {    
+  .then(user => {
     if (req.body.user && req.body.pass) {
         var query = {$and: [{user: req.body.user}, {password: req.body.pass}]};        
         esquema.find(query, (err, data) =>{
