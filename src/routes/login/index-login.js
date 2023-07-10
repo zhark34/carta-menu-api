@@ -33,10 +33,10 @@ app.post('/loguear', auth, (req, res)=>{
       req.session.user = req.body.user;
       req.session.admin = req.body.pass;
       const f = Date.now();
-      res.status(200).send({"login":1,"name":data[0].name,"token":"token-secreto-"+f});
+      res.status(200).send({"login":1,"message":data[0].name,"token":"token-secreto-"+f});
     }
     else{
-        res.status(200).send({"login":0,"error":"User y/o password no son correctos"});
+        res.status(200).send({"login":0,"message":"User y/o password no son correctos"});
     }
   })
 });
