@@ -20,7 +20,7 @@ app.use(session({
 }));
 
 app.post('/loguear', auth, (req, res)=>{
-  
+
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST');
   res.header("Access-Control-Allow-Headers","Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
@@ -29,8 +29,7 @@ app.post('/loguear', auth, (req, res)=>{
   .exec()
   .then(user => {
     if (req.body.user && req.body.pass) {
-        var query = {$and: [{user: req.body.user}, {password: req.body.pass}]};        
-        esquema.find(query, (err, data) =>{
+        var query = {$and: [{user: req.body.user}, {password: req.body.pass}]};
             if (err) return res.status(200).send({"login":0,"error":"Error Interno"});            
             if(data.length>0){       
                 req.session.user = req.body.user;
@@ -40,8 +39,7 @@ app.post('/loguear', auth, (req, res)=>{
             }
             else{
                 res.status(200).send({"login":0,"Error":"Usuario o Contraseña incorrecto/s. Intenta con otros datos."});
-            }            
-        });
+            }
     }
     else{
         res.status(200).send({"login":0,"error":"User y/o password no son correctos"});
