@@ -30,18 +30,10 @@ app.post('/loguear', auth, (req, res)=>{
   .then(user => {
 
     if(user.length === 1){
-      if (req.body.user && req.body.pass) {
-        if (err) return res.status(200).send({"login":0,"error":"Error Interno"});            
-        if(data.length>0){       
-            req.session.user = req.body.user;
-            req.session.admin = req.body.pass;
-            const f = Date.now();
-            res.status(200).send({"login":1,"name":data[0].name,"token":"token-secreto-"+f});
-        }
-        else{
-            res.status(200).send({"login":0,"Error":"Usuario o Contraseña incorrecto/s. Intenta con otros datos."});
-        }
-      }
+      req.session.user = req.body.user;
+      req.session.admin = req.body.pass;
+      const f = Date.now();
+      res.status(200).send({"login":1,"name":data[0].name,"token":"token-secreto-"+f});
     }
     else{
         res.status(200).send({"login":0,"error":"User y/o password no son correctos"});
