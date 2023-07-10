@@ -21,8 +21,6 @@ app.use(session({
 
 app.post('/loguear', auth, (req, res)=>{
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST');
-  res.header("Access-Control-Allow-Headers","Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
   admins.find({ usuario: req.body.user, password: req.body.pass })
   .exec()
   .then(user => {    
@@ -32,7 +30,7 @@ app.post('/loguear', auth, (req, res)=>{
             if (err) return res.status(200).send({"login":0,"error":"Error Interno"});            
             if(data.length>0){       
                 req.session.user = req.body.user;
-                req.session.admin = req.body.password;
+                req.session.admin = req.body.pass;
                 const f = Date.now();
                 res.status(200).send({"login":1,"name":data[0].name,"token":"token-secreto-"+f});
             }
