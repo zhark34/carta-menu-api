@@ -33,10 +33,10 @@ app.post('/loguear', auth, (req, res)=>{
       req.session.user = req.body.user;
       req.session.admin = req.body.pass;
       const f = Date.now();
-      res.status(200).send({"login":1,"message":"Aceso concedido","token":"token-secreto-"+f});
+      res.status(200).send({login:1,message:"Aceso concedido",token:"token-secreto-"+f});
     }
     else{
-        res.status(200).send({"login":0,"message":"User y/o password no son correctos"});
+        res.status(200).send({login:0,message:"User y/o password no son correctos"});
     }
   })
 });
@@ -46,7 +46,7 @@ app.all('/chek', auth, (req, res)=>{
   res.header('Access-Control-Allow-Methods', 'GET, POST');
   res.header("Access-Control-Allow-Headers","Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
   const f = Date.now();
-  res.status(200).send({"login":1,"message":"Aceso concedido","token":"token-secreto-"+f});
+  res.status(200).send({login:1,message:"Aceso concedido",token:"token-secreto-"+f});
 });
 
 app.all('/logout', function (req, res) {

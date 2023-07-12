@@ -4,7 +4,7 @@ const auth = function(req, res, next) {
       return next();
     }
     else{
-      return res.send({"login":1,"message":"Aceso Denegado"});
+      return res.send({login:0,"message":"Aceso Denegado"});
     }
 };
 
