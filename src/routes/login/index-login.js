@@ -16,7 +16,7 @@ app.use(session({
     proxy: true,
     resave: true,
     saveUninitialized: true ,
-    cookie: { maxAge: 60 * 60 * 1000 }  
+    cookie: { maxAge: 60 * 60 * 1000 }
 }));
 
 app.post('/loguear', auth, (req, res)=>{
@@ -40,6 +40,11 @@ app.post('/loguear', auth, (req, res)=>{
     }
   })
 });
+
+app.get('/chek', auth, ), (req, res)=>{
+  res.header('Access-Control-Allow-Origin', '*');
+  res.send({"login":1,"message":"Aceso concedido","token":"token-secreto-"+f});
+}
 
 app.all('/logout', function (req, res) {
   req.session.destroy();
