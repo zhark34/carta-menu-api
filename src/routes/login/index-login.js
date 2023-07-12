@@ -19,7 +19,7 @@ app.use(session({
     cookie: { maxAge: 60 * 60 * 1000 }
 }));
 
-app.post('/loguear', auth, (req, res)=>{
+app.post('/loguear', (req, res)=>{
 
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST');
