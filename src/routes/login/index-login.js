@@ -41,7 +41,7 @@ app.post('/loguear', auth, (req, res)=>{
   })
 });
 
-app.get('/chek', auth, ), (req, res)=>{
+app.all('/chek', auth, ), (req, res)=>{
   res.header('Access-Control-Allow-Origin', '*');
   const f = Date.now();
   res.send({"login":1,"message":"Aceso concedido","token":"token-secreto-"+f});
