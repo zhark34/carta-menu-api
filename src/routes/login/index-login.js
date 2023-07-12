@@ -42,9 +42,6 @@ app.post('/loguear', auth, (req, res)=>{
 });
 
 app.get('/chek', auth, (req, res)=>{
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, RBR');
   const f = Date.now();
   const data = [{login:1,message:"Aceso concedido",token:"token-secreto-"+f}];
   res.status(200).send(data);
