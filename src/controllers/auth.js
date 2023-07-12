@@ -4,7 +4,7 @@ const auth = function(req, res, next) {
       return next();
     }
     else{
-      return res.send("<h1>No has sido autorizado, amigo. O tu sesion expiró.</h1><p><a href='/'>Regresar al login</a></p>");
+      return res.send({"login":1,"message":"Aceso Denegado"});
     }
 };
 
