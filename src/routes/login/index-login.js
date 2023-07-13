@@ -27,7 +27,7 @@ app.post('/loguear', (req, res)=>{
 
   const usuario = req.body.user;
 
-  const pass = String(req.body.pass);
+  const pass = req.body.pass;
 
   admins.find({ usuario: usuario, password: pass })
   .exec()
