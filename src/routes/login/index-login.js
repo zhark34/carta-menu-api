@@ -25,7 +25,11 @@ app.post('/loguear', (req, res)=>{
   res.header('Access-Control-Allow-Methods', 'GET, POST');
   res.header("Access-Control-Allow-Headers","Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
 
-  admins.find({ usuario: req.body.user, password: req.body.pass })
+  const usuario = req.body.user;
+
+  const pass = Number(req.body.pass);
+
+  admins.find({ usuario: usuario, password: pass })
   .exec()
   .then(user => {
 
