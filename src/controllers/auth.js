@@ -1,6 +1,6 @@
 
 const auth = function(req, res, next) {
-    if (req.session && req.session.user){
+    if (req.session && req.session.user && req.session.pass){
       return next();
     }
     else{

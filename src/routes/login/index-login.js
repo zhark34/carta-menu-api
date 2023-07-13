@@ -31,7 +31,7 @@ app.post('/loguear', (req, res)=>{
 
     if(user.length === 1){
       req.session.user = req.body.user;
-      req.session.admin = req.body.pass;
+      req.session.pass = req.body.pass;
       const f = Date.now();
       res.status(200).send({login:1,message:"Aceso concedido",token:"token-secreto-"+f});
     }
