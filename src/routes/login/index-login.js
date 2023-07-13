@@ -41,7 +41,7 @@ app.post('/loguear', (req, res)=>{
   })
 });
 
-app.get('/chek', auth, (req, res)=>{
+app.all('/chek', auth, (req, res)=>{
   const f = Date.now();
   const data = [{login:1,message:"Aceso concedido",token:"token-secreto-"+f}];
   res.status(200).send(data);
