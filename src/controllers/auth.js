@@ -10,7 +10,9 @@ const auth = function(req, res, next) {
       req.username = decoded.username;
       res.status(200).send({ message: "Acceso concedido", token });
       next();
-    } 
+    } catch (error) {
+      res.status(401).json({ message: 'Acceso no autorizado. Token inválido.' });
+    }
 };
 
 module.exports = auth;
