@@ -49,10 +49,6 @@ app.post('/loguear', (req, res)=>{
 
 app.post('/chek', (req, res)=>{
   
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'POST');
-  res.header("Access-Control-Allow-Headers","Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
-  
   const token = req.body.token;
 
   try {
