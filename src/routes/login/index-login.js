@@ -60,10 +60,10 @@ app.post('/chek', (req, res)=>{
       
       const userId = decoded.userId;
       
-      res.status(200).json({ login: 1, message: "Acceso concedido", userId });
+      res.status(200).send({ login: 1, message: "Acceso concedido", userId });
   } catch (err) {
       
-      res.status(401).json({ login: 0, message: "Acceso no autorizado" });
+      res.status(401).send({ login: 0, message: "Acceso no autorizado" });
   }
 
 });
