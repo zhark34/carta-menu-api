@@ -8,6 +8,8 @@ const admins = require('../../models/admins');
 
 const auth = require('../../controllers/auth');
 
+const jwt = require('jsonwebtoken');
+
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
