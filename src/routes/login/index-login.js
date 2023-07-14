@@ -47,7 +47,8 @@ app.post('/loguear', (req, res)=>{
   .then(user => {
 
     if(user.length === 1){
-      const token = generateToken(user[0]);
+      const token = jwt.sign({ userId: user.id, username: user.username }, 'secret-key'); // Replace 'secret-key' with your own secret key
+      res.status(200).send({ login: 1, message: 'Acceso concedido', token: token });
       res.status(200).send({login:1,message:"Aceso concedido", token:token});
     }
     else{
