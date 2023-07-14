@@ -1,11 +1,16 @@
 
 const auth = function(req, res, next) {
-    if (req.session && req.session.user && req.session.pass){
-      return next();
+    const token = req.header('Authorization');
+    if (!token) {
+      return res.status(401).json({ message: 'Acceso no autorizado. Token no proporcionado.' });
     }
-    else{
-      return res.send({login:0,"message":"Aceso Denegado"});
-    }
+    try {
+      const decoded = jwt.verify(token, 'mi_clave_secreta');
+      req.userId = decoded.userId;
+      req.username = decoded.username;
+      res.status(200).send({ message: "Acceso concedido", token });
+      next();
+    } 
 };
 
 module.exports = auth;
