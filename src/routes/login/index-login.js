@@ -48,12 +48,15 @@ app.post('/loguear', (req, res)=>{
 
     if(user.length === 1){
       const token = generateToken(user[0]);
-      res.status(200).send({login:1,message:"Aceso concedido", token});
+      res.status(200).send({login:1,message:"Aceso concedido", token:token});
     }
     else{
         res.status(200).send({login:0,message:"User y/o password no son correctos"});
     }
-  })
+  }).catch(error => {
+    console.error('Error al buscar usuarios:', error);
+    res.status(500).send({ login: 0, message: 'Error en el servidor' });
+  });
 });
 
 app.all('/logout', function (req, res) {
