@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 
 session = require('express-session');
@@ -19,7 +20,17 @@ app.use(session({
     cookie: { maxAge: 60 * 60 * 1000 }
 }));
 
-const secretKey = 'Token_Login';
+const generateToken = (user) => {
+  const payload = {
+    userId: user.id,
+    username: user.username,
+  };
+
+  const token = jwt.sign(payload, 'token-secreto-', { expiresIn: '1h' });
+
+  return token;
+};
+
 
 app.post('/loguear', (req, res)=>{
 
@@ -36,32 +47,13 @@ app.post('/loguear', (req, res)=>{
   .then(user => {
 
     if(user.length === 1){
-      req.session.user = req.body.user;
-      req.session.pass = req.body.pass;
-      const f = Date.now();
-      res.status(200).send({login:1,message:"Aceso concedido", token:"token-secreto-"+f});
+      const token = generateToken(user[0]);
+      res.status(200).send({login:1,message:"Aceso concedido", token});
     }
     else{
         res.status(200).send({login:0,message:"User y/o password no son correctos"});
     }
   })
-});
-
-app.post('/chek', (req, res)=>{
-  
-  const token = req.body.token;
-
-  try {
-      const decoded = jwt.verify(token, secretKey);
-      
-      const userId = decoded.userId;
-      
-      res.status(200).send({ login: 1, message: "Acceso concedido", userId });
-  } catch (err) {
-      
-      res.status(401).send({ login: 0, message: "Acceso no autorizado" });
-  }
-
 });
 
 app.all('/logout', function (req, res) {
